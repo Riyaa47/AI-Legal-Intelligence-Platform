@@ -9,7 +9,7 @@ from app.api import router
 
 load_dotenv()
 
-app = FastAPI(title="AI Legal Compliance Assistant System", version="1.0.0")
+app = FastAPI(title="Legal Intelligence Platform", version="1.0.0")
 
 app.add_middleware(
     CORSMiddleware,
