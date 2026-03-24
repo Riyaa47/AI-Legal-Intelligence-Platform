@@ -1,97 +1,89 @@
 AI-Legal-Intelligence-Platform
 Overview
-
-AI-Legal-Intelligence-Platform is a project I built to explore how AI can simplify the process of understanding and applying legal and regulatory information. The goal was to design a system that can take complex legal documents and turn them into something searchable, explainable, and useful for decision-making.
-
-The platform processes regulatory documents, enables intelligent search, and provides structured compliance insights using modern AI techniques like embeddings, retrieval-based generation, and knowledge graphs.
-
+Built this project to explore how AI can simplify understanding of legal and regulatory documents
+Designed a system that converts complex legal text into structured, searchable insights
+Focused on making compliance analysis more accessible and explainable
+Combines embeddings, retrieval-based generation, and knowledge graphs
 What This Project Does
-Takes raw legal or regulatory documents as input
-Extracts and organizes important information
-Allows users to ask questions in natural language
+Processes raw legal or regulatory documents
+Extracts and organizes key information
+Supports natural language queries
 Generates context-aware answers
 Evaluates compliance scenarios and highlights risks
 Key Features
 Document Handling
-
-I implemented support for uploading PDF and HTML files, followed by automated text extraction and segmentation to prepare the data for further processing.
-
+Upload support for PDF and HTML files
+Automatic text extraction and segmentation
+Prepares data for downstream processing
 Semantic Search
-
-Instead of relying on keyword matching, the system converts text into embeddings. This allows it to find meaning-based matches, which works much better for legal content.
-
+Converts text into embeddings for meaning-based search
+Improves accuracy compared to keyword-based approaches
 Knowledge Graph Creation
-
-The system identifies important legal entities and builds relationships between them. This helps in structuring otherwise unorganized information and improves explainability.
-
+Extracts entities such as rules, violations, and penalties
+Builds relationships between them
+Helps in structuring unorganized legal data
 Question Answering System
-
-I integrated a retrieval-based pipeline where relevant information is first fetched and then used to generate answers. This ensures responses are grounded in actual documents.
-
+Retrieval-based pipeline (RAG approach)
+Fetches relevant context before generating answers
+Ensures responses are grounded in actual documents
 Compliance Analysis
-
-One of the core parts of the project is analyzing business scenarios and checking them against regulatory rules. The system highlights potential risks and suggests improvements.
-
+Analyzes business scenarios against regulations
+Identifies potential risks
+Suggests improvements and recommendations
 Web Interface
-
-I created a simple frontend where users can upload documents, ask questions, and view results without dealing with backend complexity.
-
+Simple UI for document upload and interaction
+Real-time query handling
+Displays analysis results clearly
 Tech Stack
 Backend
 Python
 FastAPI
-AI APIs (Alibaba Cloud Bailian)
+Alibaba Cloud Bailian APIs
 scikit-learn
 Data Processing
-PyPDF2 for PDF parsing
-BeautifulSoup for HTML parsing
+PyPDF2 (PDF parsing)
+BeautifulSoup (HTML parsing)
 Frontend
 HTML
 CSS
 JavaScript
 Storage
-JSON-based storage for simplicity
-Local file system for uploaded data
-How It Works (High-Level Flow)
-Documents are uploaded and processed
-Text is converted into embeddings
-Relevant chunks are retrieved during queries
-A language model generates answers using retrieved context
-Knowledge graphs are built to represent relationships
-Compliance logic is applied to generate insights
+JSON-based storage
+Local file system for uploads
+How It Works
+Upload document → extract and clean text
+Convert text into embeddings
+Retrieve relevant content during queries
+Generate answers using retrieved context
+Build knowledge graph for relationships
+Apply compliance logic for insights
 Setup
 Requirements
-Python 3.8+
+Python 3.8 or higher
 Installation
 pip install -r requirements.txt
 Environment Variables
 
-Create a .env file and add:
+Create a .env file:
 
 ALIBABA_API_KEY=your_api_key
 QWEN_MODEL=qwen-turbo
 EMBEDDING_MODEL=text-embedding-v1
 DATA_DIR=./data
 UPLOAD_DIR=./uploads
-Running the Project
+Run the Project
+Option 1
 python run_system.py
-
-or
-
+Option 2
 uvicorn main:app --host 0.0.0.0 --port 8000
-
-Then open:
-
-http://localhost:8000
+Open: http://localhost:8000
+API Docs: http://localhost:8000/docs
 API Routes
 Upload documents
 Query regulations
-Generate knowledge graph
+Build knowledge graph
 Perform compliance analysis
 Search regulations
-
-(API docs available at /docs when the server is running)
-
 Project Structure
 AI-Legal-Intelligence-Platform/
 ├── app/
@@ -103,17 +95,17 @@ AI-Legal-Intelligence-Platform/
 ├── run_system.py
 └── requirements.txt
 What I Learned
-How to design a complete backend system using FastAPI
-Practical use of embeddings and semantic search
-Building a retrieval-based AI pipeline
-Structuring unorganized data using knowledge graphs
-Designing APIs and integrating them with a frontend
-Possible Improvements
-Add user authentication
-Move from JSON storage to a database
+Building backend systems using FastAPI
+Applying embeddings and semantic search
+Designing a retrieval-based AI pipeline
+Structuring data using knowledge graphs
+Integrating APIs with a frontend
+Future Improvements
+Add authentication and user roles
+Replace JSON storage with a database
 Improve UI/UX
 Support more document formats
-Deploy on cloud for real-world usage
+Deploy on cloud
 Author
 
-Your Name
+Riya
