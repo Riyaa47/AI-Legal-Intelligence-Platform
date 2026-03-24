@@ -33,7 +33,7 @@ async def customer_portal():
         return HTMLResponse(content="""
         <html>
             <body>
-                <h1>AI Legal Compliance Assistant System</h1>
+                <h1>Legal Intelligence Platform</h1>
                 <p>Customer portal is being developed...</p>
                 <p>API documentation: <a href="/docs">/docs</a></p>
             </body>
