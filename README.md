@@ -1,52 +1,52 @@
-# 🧠 AI Regulatory Compliance Assistance System
+#  AI Regulatory Compliance Assistance System
 
 > An **AI-based legal compliance analysis platform** integrating **Alibaba Cloud Bailian** AI capabilities for regulatory document processing, semantic retrieval, compliance analysis, and knowledge-graph construction.
 
 ---
 
-## 🚀 System Overview
+##  System Overview
 The **AI Regulatory Compliance Assistance System** automates compliance interpretation across complex legal frameworks.  
 It supports PDF / HTML regulation ingestion, AI-powered question answering, and explainable rule mapping through RAG + knowledge-graph techniques.
 
 ---
 
-## ✨ Key Features
+##  Key Features
 
 ### 1. Document Processing Module
-- 📄 Upload **PDF** or **HTML** regulatory documents  
-- 🔍 Automatic text extraction and segmentation  
-- 🧾 Metadata extraction and storage  
+-  Upload **PDF** or **HTML** regulatory documents  
+-  Automatic text extraction and segmentation  
+-  Metadata extraction and storage  
 
 ### 2. Vectorization & Embedding Module
-- 🧠 Uses **Alibaba Cloud Bailian Embedding API** for text vectorization  
-- 🗂 Builds **vector indexes** for regulations  
-- 🔎 Enables **semantic similarity search**
+-  Uses **Alibaba Cloud Bailian Embedding API** for text vectorization  
+-  Builds **vector indexes** for regulations  
+-  Enables **semantic similarity search**
 
 ### 3. Knowledge Graph Construction
-- ⚖️ Extracts legal entities *(articles, violations, penalties, etc.)*  
-- 🧩 Identifies inter-entity relationships  
-- 🗃 Outputs a **JSON-formatted knowledge graph**
+-  Extracts legal entities *(articles, violations, penalties, etc.)*  
+-  Identifies inter-entity relationships  
+-  Outputs a **JSON-formatted knowledge graph**
 
 ### 4. Semantic Retrieval & Q&A (RAG)
-- 📚 Regulation retrieval based on **vector similarity**  
-- 🕸 Enhances context with **knowledge graphs**  
-- 💬 Generates professional answers via **Qwen-Turbo model**
+-  Regulation retrieval based on **vector similarity**  
+-  Enhances context with **knowledge graphs**  
+-  Generates professional answers via **Qwen-Turbo model**
 
 ### 5. Compliance Determination Workflow
-- 🧮 Multi-factor logical analysis for business compliance  
-- 📊 Risk-level evaluation  
-- ⚠️ Violation identification & recommendation generation
+-  Multi-factor logical analysis for business compliance  
+-  Risk-level evaluation  
+-  Violation identification & recommendation generation
 
 ### 6. Front-End Interactive Interface
-- 🗂 Document upload & management  
-- 🤖 Real-time Q&A interaction  
-- 📑 Compliance analysis report  
-- 🔗 Knowledge-graph query  
-- 📈 System statistics dashboard  
+-  Document upload & management  
+-  Real-time Q&A interaction  
+-  Compliance analysis report  
+-  Knowledge-graph query  
+-  System statistics dashboard  
 
 ---
 
-## 🏗 Technical Architecture
+##  Technical Architecture
 
 ### Backend Stack
 | Component | Purpose |
@@ -67,8 +67,8 @@ It supports PDF / HTML regulation ingestion, AI-powered question answering, and 
 | **Responsive Design** | Multi-device adaptation |
 
 ### Data Storage
-- 🗂 **JSON files** – document / vector / graph data  
-- 💾 **Local file system** – for uploaded files  
+-  **JSON files** – document / vector / graph data  
+-  **Local file system** – for uploaded files  
 
 ---
 
