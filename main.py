@@ -50,7 +50,7 @@ async def admin_portal():
         return HTMLResponse(content="""
         <html>
             <body>
-                <h1>AI Legal Compliance Assistant System - Admin</h1>
+                <h1>Legal-Intelligence-Platform - Admin</h1>
                 <p>Admin portal is being developed...</p>
                 <p>API documentation: <a href="/docs">/docs</a></p>
             </body>
