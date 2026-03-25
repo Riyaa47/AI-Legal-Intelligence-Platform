@@ -55,15 +55,15 @@ async def upload_file(request: Request, file: UploadFile = File(...)):
 
     score = max(0, 100 - (len(risks) * 20))
 
-    return templates.TemplateResponse(
-        "result.html",
-        {
-            "request": request,
-            "filename": file.filename,
-            "score": score,
-            "issues": risks
-        }
-    )
+   return templates.TemplateResponse(
+    "result.html",
+    {
+        "request": request,
+        "filename": file.filename,
+        "score": score,
+        "issues": risks
+    }
+)
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 app.include_router(router, prefix="/api")
