@@ -5,52 +5,48 @@
     <style>
         body {
             font-family: Arial;
-            background: #0f172a;
-            color: white;
             text-align: center;
-            padding: 50px;
+            background: #f5f5f5;
         }
-        .box {
-            background: #1e293b;
+        .card {
+            background: white;
             padding: 30px;
+            margin: 50px auto;
+            width: 50%;
             border-radius: 10px;
-            display: inline-block;
-            width: 60%;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
         .score {
-            font-size: 30px;
-            color: #22c55e;
+            font-size: 40px;
+            font-weight: bold;
         }
-        .issue {
-            color: #f87171;
-            margin: 10px;
+        .good { color: green; }
+        .bad { color: red; }
+        ul {
+            text-align: left;
         }
     </style>
 </head>
 <body>
 
-    <h1>📊 Analysis Result</h1>
+<div class="card">
+    <h2>📄 File: {{ filename }}</h2>
 
-    <div class="box">
-        <h3>File: {{ filename }}</h3>
-        
-        <div class="score">
-            Risk Score: {{ score }}/100
-        </div>
-
-        <h3>Issues:</h3>
-        
-        {% if issues %}
-            {% for issue in issues %}
-                <div class="issue">{{ issue }}</div>
-            {% endfor %}
-        {% else %}
-            <p>✅ No major risks found</p>
-        {% endif %}
-
-        <br><br>
-        <a href="/upload" style="color: lightblue;">Upload another file</a>
+    <h3>Risk Score:</h3>
+    <div class="score {% if score > 60 %}good{% else %}bad{% endif %}">
+        {{ score }}/100
     </div>
+
+    <h3>Issues Found:</h3>
+    <ul>
+        {% for issue in issues %}
+            <li>{{ issue }}</li>
+        {% endfor %}
+    </ul>
+
+    <br>
+    <a href="/upload">⬅ Upload Another File</a>
+</div>
 
 </body>
 </html>
