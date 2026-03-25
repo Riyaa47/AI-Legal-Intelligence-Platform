@@ -28,9 +28,39 @@ app.add_middleware(
 def upload_page(request: Request):
     return templates.TemplateResponse("upload.html", {"request": request})
 
+import PyPDF2
+from io import BytesIO
+
 @app.post("/upload")
 async def upload_file(file: UploadFile = File(...)):
-    return {"filename": file.filename}
+    
+    content = await file.read()
+    
+    pdf = PyPDF2.PdfReader(BytesIO(content))
+    
+    text = ""
+    for page in pdf.pages:
+        text += page.extract_text() or ""
+
+    # Simple keyword analysis
+    risks = []
+    
+    if "termination" not in text.lower():
+        risks.append(" Missing termination clause")
+        
+    if "liability" not in text.lower():
+        risks.append(" No liability clause found")
+        
+    if "confidential" not in text.lower():
+        risks.append(" Confidentiality clause missing")
+
+  score = max(0, 100 - (len(risks) * 20))
+
+    return {
+        "filename": file.filename,
+        "risk_score": score,
+        "issues": risks
+    }
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
