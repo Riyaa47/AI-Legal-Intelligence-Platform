@@ -38,13 +38,23 @@ async def upload_file(request: Request, file: UploadFile = File(...)):
 
     content = await file.read()
 
+    try:
     pdf = PyPDF2.PdfReader(BytesIO(content))
+except Exception:
+    return HTMLResponse(content="""
+    <h2 style='color:red;'>Error reading PDF</h2>
+    <p>Make sure you upload a valid text-based PDF.</p>
+    <a href="/upload">Go Back</a>
+    """)
 
     text = ""
-    for page in pdf.pages:
-        text += page.extract_text() or ""
 
-    risks = []
+for page in pdf.pages:
+    page_text = page.extract_text()
+    if page_text:
+        text += page_text
+
+risks = []
 
     if "termination" not in text.lower():
         risks.append(" Missing termination clause")
