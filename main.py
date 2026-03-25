@@ -1,11 +1,16 @@
+from fastapi import UploadFile, File
+from fastapi.responses import HTMLResponse
+from fastapi.templating import Jinja2Templates
+from fastapi import Request
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import HTMLResponse
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 import os
 from dotenv import load_dotenv
 from app.api import router
+
+templates = Jinja2Templates(directory="templates")
 
 load_dotenv()
 
@@ -18,6 +23,14 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+@app.get("/upload", response_class=HTMLResponse)
+def upload_page(request: Request):
+    return templates.TemplateResponse("upload.html", {"request": request})
+
+@app.post("/upload")
+async def upload_file(file: UploadFile = File(...)):
+    return {"filename": file.filename}
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
