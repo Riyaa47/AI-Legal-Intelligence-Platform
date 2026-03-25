@@ -8,3 +8,4 @@ requests
 setuptools
 wheel
 jinja2
+python-multipart
