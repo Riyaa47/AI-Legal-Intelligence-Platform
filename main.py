@@ -31,8 +31,8 @@ def upload_page(request: Request):
 import PyPDF2
 from io import BytesIO
 
-@app.post("/upload")
-async def upload_file(file: UploadFile = File(...)):
+@app.post("/upload", response_class=HTMLResponse)
+async def upload_file(request: Request, file: UploadFile = File(...)):
     
     content = await file.read()
     
@@ -42,9 +42,8 @@ async def upload_file(file: UploadFile = File(...)):
     for page in pdf.pages:
         text += page.extract_text() or ""
 
-    # Simple keyword analysis
     risks = []
-    
+
     if "termination" not in text.lower():
         risks.append(" Missing termination clause")
         
@@ -54,14 +53,17 @@ async def upload_file(file: UploadFile = File(...)):
     if "confidential" not in text.lower():
         risks.append(" Confidentiality clause missing")
 
-  score = max(0, 100 - (len(risks) * 20))
+    score = max(0, 100 - (len(risks) * 20))
 
-    return {
-        "filename": file.filename,
-        "risk_score": score,
-        "issues": risks
-    }
-
+    return templates.TemplateResponse(
+        "result.html",
+        {
+            "request": request,
+            "filename": file.filename,
+            "score": score,
+            "issues": risks
+        }
+    )
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 app.include_router(router, prefix="/api")
