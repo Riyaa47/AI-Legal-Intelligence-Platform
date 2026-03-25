@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Analysis Result</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #0f172a;
+            color: white;
+            text-align: center;
+            padding: 50px;
+        }
+        .box {
+            background: #1e293b;
+            padding: 30px;
+            border-radius: 10px;
+            display: inline-block;
+            width: 60%;
+        }
+        .score {
+            font-size: 30px;
+            color: #22c55e;
+        }
+        .issue {
+            color: #f87171;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>📊 Analysis Result</h1>
+
+    <div class="box">
+        <h3>File: {{ filename }}</h3>
+        
+        <div class="score">
+            Risk Score: {{ score }}/100
+        </div>
+
+        <h3>Issues:</h3>
+        
+        {% if issues %}
+            {% for issue in issues %}
+                <div class="issue">{{ issue }}</div>
+            {% endfor %}
+        {% else %}
+            <p>✅ No major risks found</p>
+        {% endif %}
+
+        <br><br>
+        <a href="/upload" style="color: lightblue;">Upload another file</a>
+    </div>
+
+</body>
+</html>
