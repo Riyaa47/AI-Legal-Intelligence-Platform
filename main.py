@@ -33,11 +33,13 @@ from io import BytesIO
 
 @app.post("/upload", response_class=HTMLResponse)
 async def upload_file(request: Request, file: UploadFile = File(...)):
-    
+    import PyPDF2
+    from io import BytesIO
+
     content = await file.read()
-    
+
     pdf = PyPDF2.PdfReader(BytesIO(content))
-    
+
     text = ""
     for page in pdf.pages:
         text += page.extract_text() or ""
@@ -46,24 +48,24 @@ async def upload_file(request: Request, file: UploadFile = File(...)):
 
     if "termination" not in text.lower():
         risks.append(" Missing termination clause")
-        
+
     if "liability" not in text.lower():
         risks.append(" No liability clause found")
-        
+
     if "confidential" not in text.lower():
         risks.append(" Confidentiality clause missing")
 
     score = max(0, 100 - (len(risks) * 20))
 
-   return templates.TemplateResponse(
-    "result.html",
-    {
-        "request": request,
-        "filename": file.filename,
-        "score": score,
-        "issues": risks
-    }
-)
+    return templates.TemplateResponse(
+        "result.html",
+        {
+            "request": request,
+            "filename": file.filename,
+            "score": score,
+            "issues": risks
+        }
+    )
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 app.include_router(router, prefix="/api")
