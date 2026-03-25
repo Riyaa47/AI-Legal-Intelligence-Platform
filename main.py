@@ -40,8 +40,10 @@ app.include_router(router, prefix="/api")
 
 @app.get("/upload", response_class=HTMLResponse)
 def upload_page(request: Request):
-    return templates.TemplateResponse("upload.html", {"request": request})
-
+    return templates.TemplateResponse(
+        "upload.html",
+        {"request": request}
+    )
 
 @app.post("/upload", response_class=HTMLResponse)
 async def upload_file(request: Request, file: UploadFile = File(...)):
